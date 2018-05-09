@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Studio</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div class="studio">
+    <div class="paper"></div>
+    <div class="controls">
+        <h1>Geometric Mandala based on Multiplication Tables</h1>
+        <p class="preabmle">
+            Solution for the Project Euler Problem 11 - Largest product in a grid. Written in last years most popular language, according to Github statistics, Rust.
+        </p>
+        <p>
+            Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
+        </p>
+        <fieldset>
+            <label>
+                Table (<span id="tableValue">2</span>)
+                <input type="range" min="2" max="1000" step="1" value="2" oninput="tableValue.innerHTML = this.value">
+            </label>
+
+            <label>
+                Min (<span id="minValue">2</span>)
+                <input type="range" min="2" max="1000" step="1" value="2" oninput="minValue.innerHTML = this.value">
+            </label>
+            <button>Download SVG</button>
+        </fieldset>
+    </div>
+</div>
+</body>
+</html>
