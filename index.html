@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="studio">
-    <div class="paper"></div>
+    <div id="js-paper" class="paper"></div>
     <div class="controls">
         <h1>Geometric Mandala based on Multiplication Tables</h1>
         <p class="preabmle">
@@ -20,18 +20,22 @@
             Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
         </p>
         <fieldset>
-            <label>
-                Table (<span id="tableValue">2</span>)
-                <input type="range" min="2" max="1000" step="1" value="2" oninput="tableValue.innerHTML = this.value">
+            <label class="js-syncvalue">
+                Table (<span class="js-value"></span>)
+                <input type="range" min="2" max="1000" step="1" value="2">
             </label>
-
-            <label>
-                Min (<span id="minValue">2</span>)
-                <input type="range" min="2" max="1000" step="1" value="2" oninput="minValue.innerHTML = this.value">
+            <label class="js-syncvalue">
+                Min (<span class="js-value"></span>)
+                <input type="range" min="2" max="1000" step="1" value="1000">
+            </label>
+            <label class="js-syncvalue">
+                Max (<span class="js-value"></span>)
+                <input type="range" min="2" max="1000" step="1" value="1000">
             </label>
             <button>Download SVG</button>
         </fieldset>
     </div>
 </div>
+<script type="module" src="js.js"></script>
 </body>
 </html>

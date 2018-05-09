@@ -35,6 +35,10 @@ p.preabmle {
     width: calc(70.7106781187vh); /* 100 divided by square root of 2 */
 }
 
+.paper svg {
+    width: 100%;
+}
+
 .controls {
     max-width: 540px;
     padding: 80px 80px;
