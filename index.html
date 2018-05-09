@@ -22,15 +22,19 @@
         <fieldset>
             <label class="js-syncvalue">
                 Table (<span class="js-value"></span>)
-                <input type="range" min="2" max="1000" step="1" value="2">
+                <input name="table" type="range" min="2" max="1000" step="1" value="2">
             </label>
             <label class="js-syncvalue">
-                Min (<span class="js-value"></span>)
-                <input type="range" min="2" max="1000" step="1" value="1000">
+                Start (<span class="js-value"></span>)
+                <input name="start" type="range" min="2" max="1000" step="1" value="0">
             </label>
             <label class="js-syncvalue">
-                Max (<span class="js-value"></span>)
-                <input type="range" min="2" max="1000" step="1" value="1000">
+                Modulo (<span class="js-value"></span>)
+                <input name="modulo" type="range" min="2" max="1000" step="1" value="1500">
+            </label>
+            <label class="js-syncvalue">
+                Rotation (<span class="js-value"></span>)
+                <input name="rotation" type="range" min="-360" max="360" step="1" value="1500">
             </label>
             <button>Download SVG</button>
         </fieldset>

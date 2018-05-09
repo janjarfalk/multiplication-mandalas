@@ -29,6 +29,10 @@ p.preabmle {
 }
 
 .paper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     background: #111;
     height: 100%;
@@ -36,7 +40,8 @@ p.preabmle {
 }
 
 .paper svg {
-    width: 100%;
+    /*width: 100%;*/
+    width: 87.5420875420875%;
 }
 
 .controls {
