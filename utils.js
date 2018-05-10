@@ -26,3 +26,36 @@ export const emptyElement = element => {
   }
   return element;
 };
+
+export const getParameterByName = (name, url) => {
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return undefined;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+};
+
+export const getQueryStringObject = () => {
+  return window.location.search.substring(1).split('&')
+      .map(str => {
+        let [key, value] = str.split('=');
+        return {[key]: decodeURI(value)};
+      })
+      .reduce((prev, curr) => Object.assign(prev, curr));
+};
+
+export const getQueryStringObjectFromHash = () => {
+  return window.location.hash.substring(1).split('&')
+      .map(str => {
+        let [key, value] = str.split('=');
+        return {[key]: decodeURI(value)};
+      })
+      .reduce((prev, curr) => Object.assign(prev, curr));
+};
+
+
+export const serializeObject = obj => `#${Object.keys(obj).map(k=>`${k}=${obj[k]}`).join('&')}`;

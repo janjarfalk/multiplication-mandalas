@@ -1,4 +1,13 @@
-import {createNode, downloadContent, emptyElement} from './utils.js';
+import {createNode, downloadContent, emptyElement, getQueryStringObject, getQueryStringObjectFromHash, serializeObject} from './utils.js';
+
+// const search = window.location.search;
+const params = getQueryStringObjectFromHash();
+Object.keys(params).forEach(key => {
+  const input = document.getElementById(key);
+  if (input) {
+    input.value = params[key];
+  }
+});
 
 document.querySelectorAll('.js-syncvalue').forEach(element => {
   const display = (element.querySelectorAll('.js-value') || [])[0];
@@ -16,7 +25,18 @@ document.querySelectorAll('input').forEach(element => {
     const options = Array.from(document.querySelectorAll('input'))
         .map(({name, value}) => ({[name]: value}))
         .reduce((memo, item) => Object.assign(memo, item), {});
-    render({svg, ...options});
+    location.hash = serializeObject(options);
+  });
+});
+
+window.addEventListener("hashchange", event => {
+  const options = getQueryStringObjectFromHash();
+  render({svg, ...options});
+  Object.keys(options).forEach(key => {
+    const input = document.getElementById(key);
+    if (input) {
+      input.value = options[key];
+    }
   });
 });
 
@@ -25,17 +45,23 @@ const options = Array.from(document.querySelectorAll('input'))
     .reduce((memo, item) => Object.assign(memo, item), {});
 render({svg, ...options});
 
+
+const downloadButton = document.getElementById('download');
+downloadButton.addEventListener('click', event => {
+  const values = Object.values(options).join('-');
+  downloadContent(`mandala-${values}.svg`, svg.outerHTML);
+});
+
 function render(options) {
 
   const {svg} = options;
 
-  const name = 'Foo';
   const size = 1000;
-  const start = parseInt(options.start);
   const table = parseInt(options.table);
   const modulo = parseInt(options.modulo);
-  const end = modulo;
   const rotation = parseInt(options.rotation);
+  const start = parseInt(options.start);
+  const end = parseInt(options.end) || modulo;
 
   const width = size;
   const height = size;
@@ -61,7 +87,7 @@ function render(options) {
   // viewportElement.appendChild(svg);
 
   // Create the lines.
-  const lines = new Array(end - start).fill(0).map((_, index) => index).map(i => {
+  const lines = new Array(end - start).fill(0).map((_, index) => start + index).map(i => {
     const p1 = parseInt(i % modulo, 10);
     const p2 = parseInt((table * i) % modulo, 10);
 

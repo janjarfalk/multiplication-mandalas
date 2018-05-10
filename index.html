@@ -17,26 +17,30 @@
             Solution for the Project Euler Problem 11 - Largest product in a grid. Written in last years most popular language, according to Github statistics, Rust.
         </p>
         <p>
-            Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
+            Lorem Ipsum är <a href="#table=2&start=500&modulo=1000&rotation=-90">Half Cardioid</a> en utfyllnadstext från tryck- och förlagsindustrin. <a href="#table=934&start=2&modulo=1000&rotation=18">Mandala</a> Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. <a href="#table=502&start=250&end=750&modulo=1000&rotation=-90">Square Lighthouse</a> Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
         </p>
         <fieldset>
             <label class="js-syncvalue">
                 Table (<span class="js-value"></span>)
-                <input name="table" type="range" min="2" max="1000" step="1" value="2">
+                <input id="table" name="table" type="range" min="2" max="5000" step="1" value="2">
             </label>
             <label class="js-syncvalue">
                 Start (<span class="js-value"></span>)
-                <input name="start" type="range" min="2" max="1000" step="1" value="0">
+                <input id="start" name="start" type="range" min="2" max="5000" step="1" value="0">
+            </label>
+            <label class="js-syncvalue">
+                End (<span class="js-value"></span>)
+                <input id="end" name="end" type="range" min="2" max="5000" step="1" value="1000">
             </label>
             <label class="js-syncvalue">
                 Modulo (<span class="js-value"></span>)
-                <input name="modulo" type="range" min="2" max="1000" step="1" value="1500">
+                <input id="modulo" name="modulo" type="range" min="2" max="5000" step="1" value="1000">
             </label>
             <label class="js-syncvalue">
                 Rotation (<span class="js-value"></span>)
-                <input name="rotation" type="range" min="-360" max="360" step="1" value="1500">
+                <input id="rotation" name="rotation" type="range" min="-360" max="360" step="1" value="0">
             </label>
-            <button>Download SVG</button>
+            <button id="download">Download SVG</button>
         </fieldset>
     </div>
 </div>

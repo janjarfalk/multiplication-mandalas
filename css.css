@@ -18,6 +18,10 @@ p {
     margin-bottom: 2em;
 }
 
+a, a:visited {
+    color: #00f;
+}
+
 p.preabmle {
     font-style: italic;
 }
@@ -53,6 +57,7 @@ p.preabmle {
 fieldset {
     border: 1px solid #eee;
     padding: 1.5em;
+    margin-bottom: 2em;
 }
 
 legend {
