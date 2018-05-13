@@ -1,4 +1,45 @@
-import {createNode, downloadContent, emptyElement, getQueryStringObject, getQueryStringObjectFromHash, serializeObject} from './utils.js';
+import {
+  createNode,
+  downloadContent,
+  emptyElement,
+  getQueryStringObjectFromHash,
+  serializeObject
+} from './utils.js';
+
+import {controls} from "./gui.js";
+
+
+const setAttributes = (element, attributes) => Object.entries(attributes)
+    .forEach(([key, val]) =>
+        element.setAttribute(key, val));
+
+const elements = controls.map(control => {
+  const label = document.createElement('label');
+  const text = document.createTextNode(control.id);
+  const input = document.createElement('input');
+
+  setAttributes(input, control);
+
+  const val = document.createElement('span');
+  val.innerHTML = ` (${control.value})`;
+
+  label.appendChild(text);
+  label.appendChild(val);
+  label.appendChild(input);
+
+  input.addEventListener('change', event => {
+    val.innerHTML = ` (${event.target.value})`;
+    const options = Array.from(document.querySelectorAll('input'))
+        .map(({id, value}) => ({[id]: value}))
+        .reduce((memo, item) => Object.assign(memo, item), {});
+    location.hash = serializeObject(options);
+  });
+
+  return label;
+});
+
+const target = document.getElementById('controls');
+elements.forEach(element => target.appendChild(element));
 
 // const search = window.location.search;
 const params = getQueryStringObjectFromHash();
@@ -9,25 +50,8 @@ Object.keys(params).forEach(key => {
   }
 });
 
-document.querySelectorAll('.js-syncvalue').forEach(element => {
-  const display = (element.querySelectorAll('.js-value') || [])[0];
-  const input = (element.querySelectorAll('input') || [])[0];
-  display.innerHTML = input.value;
-  input.addEventListener('change', event => display.innerHTML = event.target.value);
-});
-
-
 const svg = createNode("svg");
 document.getElementById('js-paper').appendChild(svg);
-
-document.querySelectorAll('input').forEach(element => {
-  element.addEventListener('change', _ => {
-    const options = Array.from(document.querySelectorAll('input'))
-        .map(({name, value}) => ({[name]: value}))
-        .reduce((memo, item) => Object.assign(memo, item), {});
-    location.hash = serializeObject(options);
-  });
-});
 
 window.addEventListener("hashchange", event => {
   const options = getQueryStringObjectFromHash();
@@ -41,7 +65,7 @@ window.addEventListener("hashchange", event => {
 });
 
 const options = Array.from(document.querySelectorAll('input'))
-    .map(({name, value}) => ({[name]: value}))
+    .map(({id, value}) => ({[id]: value}))
     .reduce((memo, item) => Object.assign(memo, item), {});
 render({svg, ...options});
 
@@ -60,8 +84,8 @@ function render(options) {
   const table = parseInt(options.table);
   const modulo = parseInt(options.modulo);
   const rotation = parseInt(options.rotation);
-  const start = parseInt(options.start);
-  const end = parseInt(options.end) || modulo;
+  const start = parseInt((options.start || 0) / 100 * modulo);
+  const end = parseInt((options.end || 100) / 100 * modulo);
 
   const width = size;
   const height = size;
@@ -78,13 +102,6 @@ function render(options) {
     const y = height / 2 * Math.sin(angle + (Math.PI / 180 * rotation)) + height / 2;
     return {x, y};
   });
-
-  // svg.setAttribute("viewbox", `0 0 ${width} ${height}`);
-  // svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  // svg.setAttribute('name', name);
-
-  // Append the empty SVG to viewport element.
-  // viewportElement.appendChild(svg);
 
   // Create the lines.
   const lines = new Array(end - start).fill(0).map((_, index) => start + index).map(i => {
@@ -109,5 +126,3 @@ function render(options) {
     svg.appendChild(line);
   });
 }
-
-// render({svg});
