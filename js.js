@@ -72,6 +72,10 @@ render({svg, ...options});
 
 const downloadButton = document.getElementById('download');
 downloadButton.addEventListener('click', event => {
+  const options = Array.from(document.querySelectorAll('input'))
+      .map(({id, value}) => ({[id]: value}))
+      .reduce((memo, item) => Object.assign(memo, item), {});
+  render({svg, ...options});
   const values = Object.values(options).join('-');
   downloadContent(`mandala-${values}.svg`, svg.outerHTML);
 });
@@ -114,15 +118,47 @@ function render(options) {
     const {x: x1, y: y1} = start;
     const {x: x2, y: y2} = end;
 
+    if (options.center === "1") {
+      const w = Math.abs(x1 - x2);
+      const h = Math.abs(y1 - y2);
+
+      const x = x1 < x2 ? x1 : x2;
+      const y = y1 < y2 ? y1 : y2;
+      const diffx = size / 2 - x;
+      const diffy = size / 2 - y;
+
+      const res = {
+        x1: x1 + diffx - w / 2,
+        x2: x2 + diffx - w / 2,
+        y1: y1 + diffy - h / 2,
+        y2: y2 + diffy - h / 2
+      };
+
+      return res;
+    }
+
     return {x1, y1, x2, y2};
   });
 
+  const filteredLines = lines.filter((_, index) => {
+    return index % parseInt(options.keepEveryNLines) === parseInt(options.keepEveryNLinesShift);
+  });
+
+  const filteredLines2 = parseInt(options.minLength) === 0 ? filteredLines : filteredLines.filter(line => {
+    const a = line.x1 - line.x2;
+    const b = line.y1 - line.y2;
+    const length = Math.sqrt(a * a + b * b);
+    return length > options.minLength
+  });
+
+
   // Append lines to svg element.
-  lines.forEach(coordinates => {
+  filteredLines2.forEach(coordinates => {
     const line = createNode("line", {
       strokeWidth: 0.4,
       stroke: "#FFFFFF", ...coordinates
     });
     svg.appendChild(line);
   });
+
 }

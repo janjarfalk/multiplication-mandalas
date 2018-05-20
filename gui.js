@@ -33,4 +33,32 @@ export const controls = [{
   max: 360,
   step: 1,
   value: 0
+}, {
+  id: 'minLength',
+  type: 'range',
+  min: 0,
+  max: 1500,
+  step: 0.1,
+  value: 0
+}, {
+  id: 'keepEveryNLines',
+  type: 'range',
+  min: 1,
+  max: 1500,
+  step: 1,
+  value: 1
+}, {
+  id: 'keepEveryNLinesShift',
+  type: 'range',
+  min: 0,
+  max: 1500,
+  step: 1,
+  value: 0
+}, {
+  id: 'center',
+  type: 'range',
+  min: 0,
+  max: 1,
+  step: 1,
+  value: 0
 }];
