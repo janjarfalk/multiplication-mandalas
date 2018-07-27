@@ -70,7 +70,8 @@ const options = Array.from(document.querySelectorAll('input'))
 render({svg, ...options});
 
 
-const downloadButton = document.getElementById('download');
+const downloadButton = document.createElement('button');
+downloadButton.innerText = "Download SVG";
 downloadButton.addEventListener('click', event => {
   const options = Array.from(document.querySelectorAll('input'))
       .map(({id, value}) => ({[id]: value}))
@@ -79,12 +80,13 @@ downloadButton.addEventListener('click', event => {
   const values = Object.values(options).join('-');
   downloadContent(`mandala-${values}.svg`, svg.outerHTML);
 });
+target.appendChild(downloadButton);
 
 function render(options) {
 
   const {svg} = options;
 
-  const size = 1000;
+  const size = 540;
   const table = parseInt(options.table);
   const modulo = parseInt(options.modulo);
   const rotation = parseInt(options.rotation);

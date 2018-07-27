@@ -28,8 +28,6 @@ p.preabmle {
 
 .studio {
     width: 100%;
-    height: 100%;
-    display: flex;
 }
 
 .paper {
@@ -37,21 +35,17 @@ p.preabmle {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    position: fixed;
     background: #111;
-    height: 100%;
-    width: calc(70.7106781187vh); /* 100 divided by square root of 2 */
+    max-width: 100%;
 }
 
 .paper svg {
-    /*width: 100%;*/
     width: 87.5420875420875%;
 }
 
 .controls {
     max-width: 540px;
     padding: 80px 80px;
-    margin-left: calc(70.7106781187vh);
 }
 
 fieldset {
