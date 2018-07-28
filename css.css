@@ -28,6 +28,8 @@ p.preabmle {
 
 .studio {
     width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
 }
 
 .paper {
@@ -39,6 +41,7 @@ p.preabmle {
     max-width: 100%;
     height: 141.42135623730951vw;
     margin-bottom: 2em;
+    max-height: 764px;
 }
 
 .paper svg {
