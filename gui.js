@@ -25,7 +25,7 @@ export const controls = [{
   min: 0,
   max: 1500,
   step: 1,
-  value: 1000
+  value: 360
 }, {
   id: 'rotation',
   type: 'range',
