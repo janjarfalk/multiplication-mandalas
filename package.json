@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "iframe-resizer": "^4.1.1",
+    "parcel": "^1.12.3"
+  },
+  "scripts": {
+    "dev": "parcel *.html --out-dir dist",
+    "build": "parcel build *.html --out-dir docs --public-url /multiplication-mandalas/"
+  }
+}

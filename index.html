@@ -14,26 +14,7 @@
     <fieldset id="controls">
     </fieldset>
 </div>
+<script src="node_modules/iframe-resizer/js/iframeResizer.contentWindow.js"></script>
 <script type="module" src="js.js"></script>
-<script>
-  const getHeight = () => {
-
-    const body = document.body;
-    const html = document.documentElement;
-
-    return Math.max(body.scrollHeight, body.offsetHeight,
-        html.clientHeight, html.scrollHeight, html.offsetHeight);
-  };
-
-  setInterval(() => {
-    parent.postMessage({'height':getHeight()}, '*');
-  }, 1000);
-
-  document.addEventListener('DOMContentLoaded', () => {
-    parent.postMessage({'height':getHeight()}, '*');
-  }, false);
-
-
-</script>
 </body>
 </html>
