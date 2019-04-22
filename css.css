@@ -27,18 +27,20 @@ p.preabmle {
 
 .studio {
     width: 100%;
-    max-width: 540px;
 }
 
 .paper {
+    flex: 1 1 540px;
+    min-width: 540px;
+    flex-basis: auto; /* default value */
+    flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     background: #111;
-    max-width: 100%;
+    max-width: 540px;
     height: 141.42135623730951vw;
-    margin-bottom: 2em;
     max-height: 764px;
 }
 
@@ -55,6 +57,9 @@ fieldset {
     border: 1px solid #eee;
     padding: 1.5em;
     margin: 0;
+    max-width: 540px;
+    min-width: 540px;
+    box-sizing: border-box;
 }
 
 legend {
@@ -76,4 +81,25 @@ label {
 label input {
     display: block;
     width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    width: 50%;
+    margin-right: 27px;
+}
+
+@media (max-width: 1080px) {
+    .column {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 27px;
+    }
+    .column:last-child {
+        margin-bottom: 0;
+    }
 }

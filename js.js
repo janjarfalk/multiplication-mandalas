@@ -27,7 +27,7 @@ const elements = controls.map(control => {
   label.appendChild(val);
   label.appendChild(input);
 
-  input.addEventListener('change', event => {
+  input.addEventListener('input', event => {
     val.innerHTML = ` (${event.target.value})`;
     const options = Array.from(document.querySelectorAll('input'))
         .map(({id, value}) => ({[id]: value}))
